@@ -161,7 +161,7 @@ const Recaptcha = forwardRef(
             },
             close: handleClose,
             refreshToken,
-        }), [handleClose]);
+        }), [handleClose, refreshToken]);
 
         const handleNavigationStateChange = useCallback(() => {
             // prevent navigation on Android
