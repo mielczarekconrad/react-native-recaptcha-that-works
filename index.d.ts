@@ -43,6 +43,7 @@ export declare type RecaptchaProps = {
 export declare type RecaptchaHandles = {
     open(): void;
     close(): void;
+    refreshToken(): void;
 };
 
 declare const Recaptcha: React.ForwardRefExoticComponent<
