@@ -33,8 +33,6 @@ import React, {
 import {
     Modal,
     StyleSheet,
-    ActivityIndicator,
-    View,
 } from 'react-native';
 
 import WebView from 'react-native-webview';
@@ -43,16 +41,7 @@ import getTemplate from './get-template';
 const styles = StyleSheet.create({
     webView: {
         flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    loading: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: 'transparent',
     },
 });
 
@@ -61,6 +50,7 @@ const originWhitelist = ['*'];
 const Recaptcha = forwardRef(
     (
         {
+            activityIndicatorComponent,
             headerComponent,
             onVerify,
             onExpire,
@@ -184,11 +174,7 @@ const Recaptcha = forwardRef(
             if (!loading && source) {
                 return null;
             }
-            return (
-                <View style={styles.loading}>
-                    <ActivityIndicator size="large" />
-                </View>
-            );
+            return activityIndicatorComponent;
         };
 
         return (
@@ -212,6 +198,7 @@ const Recaptcha = forwardRef(
 );
 
 Recaptcha.defaultProps = {
+    activityIndicatorComponent: undefined,
     headerComponent: undefined,
     size: 'normal',
     theme: 'light',
