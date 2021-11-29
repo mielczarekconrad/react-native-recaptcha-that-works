@@ -147,6 +147,12 @@ const Recaptcha = forwardRef(
             [html, baseUrl],
         );
 
+        const refreshToken = useCallback(() => {
+            if ($webView.current) {
+                $webView.current.reload();
+            }
+        }, []);
+
         useImperativeHandle($ref, () => ({
             open: () => {
                 setVisible(true);
@@ -154,6 +160,7 @@ const Recaptcha = forwardRef(
                 $isClosed.current = false;
             },
             close: handleClose,
+            refreshToken,
         }), [handleClose]);
 
         const handleNavigationStateChange = useCallback(() => {
